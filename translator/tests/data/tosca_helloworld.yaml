@@ -10,9 +10,9 @@ topology_template:
         # Host container properties
         host:
          properties:
-           num_cpus: 2
-           disk_size: 10 GB
-           mem_size: 512 MB
+           num_cpus: 3
+           disk_size: 50 GB
+           mem_size: 1024 MB
         # Guest Operating System properties
         os:
           properties:
