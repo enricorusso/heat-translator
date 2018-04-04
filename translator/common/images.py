@@ -24,6 +24,16 @@ log = logging.getLogger('heat-translator')
 
 
 PREDEF_IMAGES = {
+    'ubuntu-sw-config': {'architecture': 'x86_64',
+                                       'os_type': 'linux',
+                                       'os_distro': 'ubuntu',
+                                       'os_version': '16.04'
+                                       },
+#    'fedora-sw-config': {'architecture': 'x86_64',
+#                                       'os_type': 'linux',
+#                                       'os_distro': 'fedora',
+#                                       'os_version': '16.04'
+#                                       },
     'ubuntu-software-config-os-init': {'architecture': 'x86_64',
                                        'os_type': 'linux',
                                        'os_distro': 'ubuntu',

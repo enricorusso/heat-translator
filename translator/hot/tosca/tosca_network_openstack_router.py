@@ -14,18 +14,30 @@
 from translator.hot.syntax.hot_resource import HotResource
 
 # Name used to dynamically load appropriate map class.
-TARGET_CLASS_NAME = 'ToscaVulnerability'
+TARGET_CLASS_NAME = 'ToscaNetworkOpenstackRouter'
 
 
-class ToscaVulnerability(HotResource):
-    '''Translate TOSCA node type tosca.nodes.Vulnerability.'''
+class ToscaNetworkOpenstackRouter(HotResource):
+    '''Translate TOSCA node type tosca.nodes.network.openstack.Router.'''
 
-    toscatype = 'tosca.nodes.Vulnerability'
+    toscatype = 'tosca.nodes.network.openstack.Router'
+    ROUTER_PROPS = ['external_network']
 
     def __init__(self, nodetemplate, csar_dir=None):
-        super(ToscaVulnerability, self).__init__(nodetemplate,
+        super(ToscaNetworkOpenstackRouter, self).__init__(nodetemplate,
+                                                  type='OS::Neutron::Router',
                                                   csar_dir=csar_dir)
         pass
 
-#    def handle_properties(self):
-#        pass
+    def handle_properties(self):
+        tosca_props = self.get_tosca_props()
+
+        net_props = {}
+
+        for key, value in tosca_props.items():
+            if key in self.ROUTER_PROPS:
+                if key == 'external_network':
+                    net_props['external_gateway_info'] = value
+
+        self.properties = net_props
+        # pass
